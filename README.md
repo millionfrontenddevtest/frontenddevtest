@@ -1,14 +1,8 @@
 # Real Estate API - Backend .NET + MongoDB Atlas# Real State API
 
-
-
 Sistema de API REST completo para gestión de propiedades inmobiliarias. Backend desarrollado en **.NET 8** con base de datos **MongoDB Atlas** en la nube.API REST completa construida con **.NET 8**, **C#**, y **MongoDB** para gestionar y filtrar propiedades inmobiliarias. Diseñada siguiendo principios de **Clean Architecture** con capas bien definidas (Controllers, Services, Repositories, Models, DTOs).
 
-
-
 ## 🎯 Estado del Proyecto## 📋 Tabla de Contenidos
-
-
 
 ✅ **Backend API 100% Funcional**- [Características](#características)
 
@@ -30,29 +24,25 @@ Sistema de API REST completo para gestión de propiedades inmobiliarias. Backend
 
 ---- [Contribución](#contribución)
 
-
-
 ## 📋 Tabla de Contenidos## ✨ Características
 
+1. [Requisitos](#requisitos)✅ **Arquitectura Limpia**: Controllers → Services → Repositories → Models
 
+2. [Configuración Rápida](#configuración-rápida)✅ **Inyección de Dependencias**: Configuración completa de DI en Program.cs
 
-1. [Requisitos](#requisitos)✅ **Arquitectura Limpia**: Controllers → Services → Repositories → Models  
+3. [API Endpoints](#api-endpoints)✅ **MongoDB Integration**: Driver oficial de MongoDB.Driver v2.24.0
 
-2. [Configuración Rápida](#configuración-rápida)✅ **Inyección de Dependencias**: Configuración completa de DI en Program.cs  
+4. [Estructura del Proyecto](#estructura-del-proyecto)✅ **DTOs Tipados**: Validación y mapeo de datos estructurado
 
-3. [API Endpoints](#api-endpoints)✅ **MongoDB Integration**: Driver oficial de MongoDB.Driver v2.24.0  
+5. [MongoDB Atlas](#mongodb-atlas)✅ **Filtrado Avanzado**: Búsqueda por nombre, dirección y rango de precios
 
-4. [Estructura del Proyecto](#estructura-del-proyecto)✅ **DTOs Tipados**: Validación y mapeo de datos estructurado  
+6. [Testing](#testing)✅ **Manejo de Errores**: Middleware global de excepciones
 
-5. [MongoDB Atlas](#mongodb-atlas)✅ **Filtrado Avanzado**: Búsqueda por nombre, dirección y rango de precios  
+7. [Deployment](#deployment)✅ **API Responses Estandarizadas**: Respuestas JSON consistentes
 
-6. [Testing](#testing)✅ **Manejo de Errores**: Middleware global de excepciones  
+✅ **Swagger/OpenAPI**: Documentación interactiva de endpoints
 
-7. [Deployment](#deployment)✅ **API Responses Estandarizadas**: Respuestas JSON consistentes  
-
-✅ **Swagger/OpenAPI**: Documentación interactiva de endpoints  
-
----✅ **Pruebas Unitarias**: Cobertura con NUnit y Moq  
+---✅ **Pruebas Unitarias**: Cobertura con NUnit y Moq
 
 ✅ **Logging**: Sistema de logging integrado
 
@@ -72,17 +62,13 @@ Sistema de API REST completo para gestión de propiedades inmobiliarias. Backend
 
 ---- **Git** (opcional, para clonar el repositorio)
 
-
-
 ## ⚡ Configuración Rápida### Verificar Instalación
-
-
 
 ### 1. Clonar el Repositorio```bash
 
-dotnet --version  # Debe ser 8.0+
+dotnet --version # Debe ser 8.0+
 
-```bashmongod --version  # Debe estar instalado
+````bashmongod --version  # Debe estar instalado
 
 git clone https://github.com/millionfrontenddevtest/frontenddevtest.git```
 
@@ -156,17 +142,17 @@ dotnet build
 
 dotnet run**En Windows (si está instalado como servicio):**
 
-```
+````
 
 ```bash
 
 **Verifica que aparezca:**mongod  # O usa el shell de mongo si está instalado
 
-``````
+```
 
 Now listening on: http://localhost:5298
 
-```**En Docker (alternativa):**
+````**En Docker (alternativa):**
 
 
 
@@ -176,17 +162,17 @@ docker run -d -p 27017:27017 --name mongodb mongo:latest
 
 Abre en el navegador:```
 
-```
+````
 
 http://localhost:5298/swagger/index.html### 6. Ejecutar la Aplicación
 
-```
+````
 
 ```bash
 
 ---dotnet run
 
-```
+````
 
 ## 🔌 API Endpoints
 
@@ -194,7 +180,7 @@ La API estará disponible en: `https://localhost:5001` o `http://localhost:5000`
 
 ### GET - Obtener Todas las Propiedades
 
-```## ⚙️ Configuración
+````## ⚙️ Configuración
 
 GET /api/Properties
 
@@ -236,11 +222,11 @@ GET /api/Properties
 
 ```}
 
-```
+````
 
 ### GET - Obtener por ID
 
-```### Variables de Entorno
+````### Variables de Entorno
 
 GET /api/Properties/{id}
 
@@ -272,13 +258,13 @@ Content-Type: application/json$env:MongoDbSettings__DatabaseName = "RealStateDB"
 
 }
 
-``````
+````
 
 RealStateAPI/
 
 ### PUT - Actualizar Propiedad├── Controllers/
 
-```│   └── PropertiesController.cs      # Endpoints REST
+````│ └── PropertiesController.cs      # Endpoints REST
 
 PUT /api/Properties/{id}├── Services/
 
@@ -414,7 +400,7 @@ realState/
 
 └── README.md                        # Este archivo**Parámetros:**
 
-```
+````
 
 - `id` (string, requerido): ID de la propiedad (ObjectId de MongoDB)
 
@@ -432,7 +418,7 @@ realState/
 
 **Campos:**
 
-```javascript**Respuesta (200 OK):**
+````javascript**Respuesta (200 OK):**
 
 {
 
@@ -502,13 +488,13 @@ cd RealStateAPIContent-Type: application/json
 
 powershell -ExecutionPolicy Bypass -File full-test.ps1```
 
-```
+````
 
 **Cuerpo de la Solicitud:**
 
 ### Opción 3: cURL
 
-```json
+````json
 
 ```bash{
 
@@ -680,9 +666,9 @@ GET /health
 
 az webapp create --name RealStateAPI --resource-group myGroup --plan myPlan**Respuesta (200 OK):**
 
-```
+````
 
-```json
+````json
 
 2. **Publicar:**{
 
@@ -692,11 +678,11 @@ dotnet publish -c Release  "timestamp": "2024-10-18T12:34:56Z"
 
 ```}
 
-```
+````
 
 3. **Deploy:**
 
-```bash## 🧪 Pruebas Unitarias
+````bash## 🧪 Pruebas Unitarias
 
 az webapp deployment source config-zip --resource-group myGroup --name RealStateAPI --src bin/Release/net8.0/publish/app.zip
 
@@ -714,9 +700,9 @@ dotnet test
 
 heroku create realstate-api### Ejecutar Pruebas Específicas
 
-```
+````
 
-```bash
+````bash
 
 2. **Deploy:**# Solo pruebas de PropertyFilterDto
 
@@ -830,13 +816,13 @@ API_PORT=5298curl -X GET "https://localhost:5001/api/properties/search?name=Casa
 
 ENVIRONMENT=Development  -H "accept: application/json"
 
-```
+````
 
 # 5. Verificar salud de la API
 
 ---curl -X GET "https://localhost:5001/health" -H "accept: application/json"
 
-```
+````
 
 ## 🐛 Troubleshooting
 
@@ -878,7 +864,7 @@ dotnet run --urls "http://localhost:5299"GET https://localhost:5001/api/properti
 
 Solución: Verifica que el ID es válidoAccept: application/json
 
-```
+````
 
 ### Filtrar propiedades
 
@@ -890,11 +876,11 @@ Content-Type: application/json
 
 {
 
-- **Backend:** .NET 8.0  "name": "Casa",
+- **Backend:** .NET 8.0 "name": "Casa",
 
-- **Lenguaje:** C#  "minPrice": 100000,
+- **Lenguaje:** C# "minPrice": 100000,
 
-- **Base de Datos:** MongoDB 7.0+  "maxPrice": 500000
+- **Base de Datos:** MongoDB 7.0+ "maxPrice": 500000
 
 - **ORM/Driver:** MongoDB.Driver 2.24.0}
 
@@ -924,39 +910,33 @@ Accept: application/json
 
 5. Pull Request### Capas del Proyecto
 
-
-
 ---```
 
 ┌─────────────────────────────────────────┐
 
-## 📞 Soporte│        Controllers (REST API)           │
+## 📞 Soporte│ Controllers (REST API) │
 
 ├─────────────────────────────────────────┤
 
-Para reportar bugs o solicitar features, abre un issue en GitHub.│   Validación de entrada y respuestas    │
+Para reportar bugs o solicitar features, abre un issue en GitHub.│ Validación de entrada y respuestas │
 
 ├─────────────────────────────────────────┤
 
----│    Services (Lógica de Negocio)         │
+---│ Services (Lógica de Negocio) │
 
 ├─────────────────────────────────────────┤
 
-## 📄 Licencia│  Repositories (Acceso a Datos)          │
+## 📄 Licencia│ Repositories (Acceso a Datos) │
 
 ├─────────────────────────────────────────┤
 
-MIT License - Ver LICENSE.md│        MongoDB (Base de Datos)          │
+MIT License - Ver LICENSE.md│ MongoDB (Base de Datos) │
 
 └─────────────────────────────────────────┘
 
 ---```
 
-
-
 ## ✅ Checklist Implementado### Patrones Implementados
-
-
 
 - [x] API REST con 6 endpoints1. **Repository Pattern**: Abstracción del acceso a datos
 
@@ -984,21 +964,21 @@ MIT License - Ver LICENSE.md│        MongoDB (Base de Datos)          │
 
 {
 
----  "_id": ObjectId("507f1f77bcf86cd799439011"),
+--- "\_id": ObjectId("507f1f77bcf86cd799439011"),
 
-  "idOwner": ObjectId("507f1f77bcf86cd799439010"),
+"idOwner": ObjectId("507f1f77bcf86cd799439010"),
 
-## 🎯 Próximas Fases  "name": "Casa Moderna",
+## 🎯 Próximas Fases "name": "Casa Moderna",
 
-  "address": "Avenida Principal 123",
+"address": "Avenida Principal 123",
 
-### Fase 2: Frontend  "price": 250000,
+### Fase 2: Frontend "price": 250000,
 
-- React/Vue.js para interfaz  "image": "https://example.com/image.jpg",
+- React/Vue.js para interfaz "image": "https://example.com/image.jpg",
 
-- Conexión con backend API  "createdAt": ISODate("2024-10-18T10:00:00Z"),
+- Conexión con backend API "createdAt": ISODate("2024-10-18T10:00:00Z"),
 
-- Autenticación de usuarios  "updatedAt": ISODate("2024-10-18T10:00:00Z")
+- Autenticación de usuarios "updatedAt": ISODate("2024-10-18T10:00:00Z")
 
 }
 

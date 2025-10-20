@@ -1,0 +1,134 @@
+# ============================================
+# Real Estate API - .gitignore
+# ============================================
+
+# ============ BUILD & BINARIES ============
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.so
+*.dylib
+
+# ============ PACKAGE DEPENDENCIES ============
+packages/
+.nuget/
+*.nupkg
+*.snupkg
+
+# ============ IDE & EDITOR FILES ============
+.vs/
+.vscode/
+*.sln.iml
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ============ USER-SPECIFIC FILES ============
+*.user
+*.userprefs
+*.suo
+.idea/
+
+# ============ CONFIGURATION FILES ============
+# Local settings (DO NOT COMMIT CREDENTIALS)
+appsettings.Development.json
+appsettings.Local.json
+.env
+.env.local
+.env.*.local
+
+# ============ APPLICATION SETTINGS ============
+# Keep only example files
+!appsettings.json
+!RealStateAPI/.env.example
+
+# ============ DATABASE FILES ============
+*.mdb
+*.db
+*.sqlite
+*.sqlite3
+*.ldf
+
+# ============ TEST RESULTS ============
+TestResults/
+*.trx
+*.coverage
+coverage/
+.coverage/
+
+# ============ LOGS ============
+logs/
+*.log
+*.log.*
+
+# ============ TEMPORARY FILES ============
+temp/
+tmp/
+*.tmp
+*.bak
+
+# ============ OS FILES ============
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+desktop.ini
+
+# ============ NODE MODULES (para futuro frontend) ============
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# ============ BUILD ARTIFACTS ============
+publish/
+PublishProfiles/
+artifacts/
+dist/
+build/
+
+# ============ RIDER SPECIFIC ============
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# ============ VISUAL STUDIO CODE ============
+.vscode/
+launch.json
+settings.json
+
+# ============ RESHARPER ============
+_ReSharper*/
+*.DotSettings.user
+
+# ============ NCHRUNCH ============
+_NCrunch_*
+.*crunch*.local.xml
+nCrunchTemp_*
+
+# ============ COVERAGE ============
+OpenCover/
+CodeCoverage/
+
+# ============ NUGET ============
+.nuget/NuGet.Config
+.nuget/NuGet.exe
+.nuget/packages/
+
+# ============ MSBUILD ============
+*.msbuild.log
+msbuild.err
+msbuild.wrn
+
+# ============ DOCKER ============
+docker-compose.override.yml
+
+# ============ KEEP THESE FILES ============
+!.gitkeep
+!.gitattributes
