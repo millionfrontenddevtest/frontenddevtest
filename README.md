@@ -1,521 +1,1040 @@
-# Real State API
+# Real Estate API - Backend .NET + MongoDB Atlas# Real State API
 
-API REST completa construida con **.NET 8**, **C#**, y **MongoDB** para gestionar y filtrar propiedades inmobiliarias. Diseñada siguiendo principios de **Clean Architecture** con capas bien definidas (Controllers, Services, Repositories, Models, DTOs).
 
-## 📋 Tabla de Contenidos
 
-- [Características](#características)
-- [Requisitos Previos](#requisitos-previos)
-- [Instalación](#instalación)
-- [Configuración](#configuración)
-- [Estructura del Proyecto](#estructura-del-proyecto)
-- [Endpoints API](#endpoints-api)
-- [Pruebas Unitarias](#pruebas-unitarias)
-- [Ejemplos de Uso](#ejemplos-de-uso)
+Sistema de API REST completo para gestión de propiedades inmobiliarias. Backend desarrollado en **.NET 8** con base de datos **MongoDB Atlas** en la nube.API REST completa construida con **.NET 8**, **C#**, y **MongoDB** para gestionar y filtrar propiedades inmobiliarias. Diseñada siguiendo principios de **Clean Architecture** con capas bien definidas (Controllers, Services, Repositories, Models, DTOs).
+
+
+
+## 🎯 Estado del Proyecto## 📋 Tabla de Contenidos
+
+
+
+✅ **Backend API 100% Funcional**- [Características](#características)
+
+- ✅ Conexión MongoDB Atlas establecida- [Requisitos Previos](#requisitos-previos)
+
+- ✅ CRUD completo (Create, Read, Update, Delete)- [Instalación](#instalación)
+
+- ✅ Filtrado de propiedades- [Configuración](#configuración)
+
+- ✅ Autenticación preparada- [Estructura del Proyecto](#estructura-del-proyecto)
+
+- ✅ Swagger/OpenAPI documentación- [Endpoints API](#endpoints-api)
+
+- ✅ Tests de integración listos- [Pruebas Unitarias](#pruebas-unitarias)
+
+- ✅ 8 propiedades de prueba insertadas- [Ejemplos de Uso](#ejemplos-de-uso)
+
 - [Arquitectura](#arquitectura)
-- [Contribución](#contribución)
 
-## ✨ Características
+---- [Contribución](#contribución)
 
-✅ **Arquitectura Limpia**: Controllers → Services → Repositories → Models  
-✅ **Inyección de Dependencias**: Configuración completa de DI en Program.cs  
-✅ **MongoDB Integration**: Driver oficial de MongoDB.Driver v2.24.0  
-✅ **DTOs Tipados**: Validación y mapeo de datos estructurado  
-✅ **Filtrado Avanzado**: Búsqueda por nombre, dirección y rango de precios  
-✅ **Manejo de Errores**: Middleware global de excepciones  
-✅ **API Responses Estandarizadas**: Respuestas JSON consistentes  
+
+
+## 📋 Tabla de Contenidos## ✨ Características
+
+
+
+1. [Requisitos](#requisitos)✅ **Arquitectura Limpia**: Controllers → Services → Repositories → Models  
+
+2. [Configuración Rápida](#configuración-rápida)✅ **Inyección de Dependencias**: Configuración completa de DI en Program.cs  
+
+3. [API Endpoints](#api-endpoints)✅ **MongoDB Integration**: Driver oficial de MongoDB.Driver v2.24.0  
+
+4. [Estructura del Proyecto](#estructura-del-proyecto)✅ **DTOs Tipados**: Validación y mapeo de datos estructurado  
+
+5. [MongoDB Atlas](#mongodb-atlas)✅ **Filtrado Avanzado**: Búsqueda por nombre, dirección y rango de precios  
+
+6. [Testing](#testing)✅ **Manejo de Errores**: Middleware global de excepciones  
+
+7. [Deployment](#deployment)✅ **API Responses Estandarizadas**: Respuestas JSON consistentes  
+
 ✅ **Swagger/OpenAPI**: Documentación interactiva de endpoints  
-✅ **Pruebas Unitarias**: Cobertura con NUnit y Moq  
+
+---✅ **Pruebas Unitarias**: Cobertura con NUnit y Moq  
+
 ✅ **Logging**: Sistema de logging integrado
+
+## 🔧 Requisitos
 
 ## 📦 Requisitos Previos
 
-Asegúrate de tener instalado:
+- **.NET 8.0+** - [Descargar](https://dotnet.microsoft.com/download)
 
-- **.NET 8 SDK** ([Descargar](https://dotnet.microsoft.com/en-us/download/dotnet/8.0))
+- **Git** - Control de versionesAsegúrate de tener instalado:
+
+- **MongoDB Atlas Account** - Base de datos cloud (gratis)
+
+- **Visual Studio Code o Visual Studio** - Editor- **.NET 8 SDK** ([Descargar](https://dotnet.microsoft.com/en-us/download/dotnet/8.0))
+
 - **MongoDB** (versión 4.4+) - [Descargar](https://www.mongodb.com/try/download/community)
-- **Git** (opcional, para clonar el repositorio)
 
-### Verificar Instalación
+---- **Git** (opcional, para clonar el repositorio)
 
-```bash
+
+
+## ⚡ Configuración Rápida### Verificar Instalación
+
+
+
+### 1. Clonar el Repositorio```bash
+
 dotnet --version  # Debe ser 8.0+
-mongod --version  # Debe estar instalado
-```
 
-## 🔧 Instalación
+```bashmongod --version  # Debe estar instalado
 
-### 1. Clonar o Descargar el Proyecto
+git clone https://github.com/millionfrontenddevtest/frontenddevtest.git```
 
-```bash
-# Usando Git (si lo tienes clonado)
-git clone <url-del-repositorio>
-cd realState/RealStateAPI
+cd frontenddevtest
 
-# O navega manualmente a la carpeta del proyecto
+```## 🔧 Instalación
+
+
+
+### 2. Configurar MongoDB Atlas### 1. Clonar o Descargar el Proyecto
+
+
+
+1. Ve a https://cloud.mongodb.com```bash
+
+2. Crea una cuenta (gratis)# Usando Git (si lo tienes clonado)
+
+3. Crea un clustergit clone <url-del-repositorio>
+
+4. En Database → Browse Collections, crea:cd realState/RealStateAPI
+
+   - Database: `RealStateDB_Dev`
+
+   - Collection: `Properties`# O navega manualmente a la carpeta del proyecto
+
 cd "c:\Users\<usuario>\OneDrive\Desktop\realState\RealStateAPI"
-```
 
-### 2. Restaurar Dependencias
+5. Copia tu connection string (formato: `mongodb+srv://user:password@cluster.mongodb.net/...`)```
 
-```bash
+
+
+### 3. Configurar Credentials en el API### 2. Restaurar Dependencias
+
+
+
+Edita `RealStateAPI/appsettings.Development.json`:```bash
+
 dotnet restore
-```
 
-### 3. Compilar el Proyecto
+```json```
 
-```bash
-dotnet build
-```
+{
 
-### 4. Ejecutar Pruebas Unitarias
+  "MongoDbSettings": {### 3. Compilar el Proyecto
 
-```bash
+    "ConnectionString": "mongodb+srv://your-username:your-password@your-cluster.mongodb.net/?retryWrites=true&w=majority",
+
+    "DatabaseName": "RealStateDB_Dev",```bash
+
+    "PropertiesCollectionName": "Properties"dotnet build
+
+  }```
+
+}
+
+```### 4. Ejecutar Pruebas Unitarias
+
+
+
+### 4. Ejecutar el API```bash
+
 dotnet test
+
+```bash```
+
+cd RealStateAPI
+
+dotnet restore### 5. Iniciar MongoDB
+
+dotnet build
+
+dotnet run**En Windows (si está instalado como servicio):**
+
 ```
 
-### 5. Iniciar MongoDB
-
-**En Windows (si está instalado como servicio):**
-
 ```bash
-mongod  # O usa el shell de mongo si está instalado
-```
 
-**En Docker (alternativa):**
+**Verifica que aparezca:**mongod  # O usa el shell de mongo si está instalado
 
-```bash
+``````
+
+Now listening on: http://localhost:5298
+
+```**En Docker (alternativa):**
+
+
+
+### 5. Acceder a Swagger```bash
+
 docker run -d -p 27017:27017 --name mongodb mongo:latest
+
+Abre en el navegador:```
+
 ```
 
-### 6. Ejecutar la Aplicación
+http://localhost:5298/swagger/index.html### 6. Ejecutar la Aplicación
+
+```
 
 ```bash
-dotnet run
+
+---dotnet run
+
 ```
+
+## 🔌 API Endpoints
 
 La API estará disponible en: `https://localhost:5001` o `http://localhost:5000`
 
-## ⚙️ Configuración
+### GET - Obtener Todas las Propiedades
 
-### appsettings.json
+```## ⚙️ Configuración
 
-El archivo `appsettings.json` contiene la configuración de MongoDB:
+GET /api/Properties
+
+```### appsettings.json
+
+
+
+**Respuesta:**El archivo `appsettings.json` contiene la configuración de MongoDB:
 
 ```json
-{
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  },
-  "AllowedHosts": "*",
-  "MongoDbSettings": {
-    "ConnectionString": "mongodb://localhost:27017",
-    "DatabaseName": "RealStateDB",
-    "PropertiesCollectionName": "Properties"
-  }
+
+{```json
+
+  "success": true,{
+
+  "message": "Propiedades obtenidas exitosamente",  "Logging": {
+
+  "data": [    "LogLevel": {
+
+    {      "Default": "Information",
+
+      "id": "6708f12b3f1a9e4c8b2d5c01",      "Microsoft.AspNetCore": "Warning"
+
+      "idOwner": "507f1f77bcf86cd799439010",    }
+
+      "name": "Casa Moderna en Miami",  },
+
+      "address": "Ocean Drive 123, Miami, Florida",  "AllowedHosts": "*",
+
+      "price": 385000,  "MongoDbSettings": {
+
+      "image": "https://via.placeholder.com/400x300"    "ConnectionString": "mongodb://localhost:27017",
+
+    }    "DatabaseName": "RealStateDB",
+
+  ]    "PropertiesCollectionName": "Properties"
+
+}  }
+
+```}
+
+```
+
+### GET - Obtener por ID
+
+```### Variables de Entorno
+
+GET /api/Properties/{id}
+
+```Puedes sobrescribir la configuración usando variables de entorno:
+
+
+
+### POST - Crear Propiedad```bash
+
+```# Windows (PowerShell)
+
+POST /api/Properties$env:MongoDbSettings__ConnectionString = "mongodb://user:password@host:27017"
+
+Content-Type: application/json$env:MongoDbSettings__DatabaseName = "RealStateDB"
+
+
+
+{# Linux/Mac
+
+  "idOwner": "507f1f77bcf86cd799439010",export MongoDbSettings__ConnectionString="mongodb://user:password@host:27017"
+
+  "name": "Nueva Casa",export MongoDbSettings__DatabaseName="RealStateDB"
+
+  "address": "Calle Principal 123, Miami, Florida",```
+
+  "price": 350000,
+
+  "image": "https://via.placeholder.com/400x300"## 📁 Estructura del Proyecto
+
 }
-```
 
-### Variables de Entorno
+``````
 
-Puedes sobrescribir la configuración usando variables de entorno:
-
-```bash
-# Windows (PowerShell)
-$env:MongoDbSettings__ConnectionString = "mongodb://user:password@host:27017"
-$env:MongoDbSettings__DatabaseName = "RealStateDB"
-
-# Linux/Mac
-export MongoDbSettings__ConnectionString="mongodb://user:password@host:27017"
-export MongoDbSettings__DatabaseName="RealStateDB"
-```
-
-## 📁 Estructura del Proyecto
-
-```
 RealStateAPI/
-├── Controllers/
-│   └── PropertiesController.cs      # Endpoints REST
-├── Services/
-│   ├── IPropertyService.cs          # Interfaz del servicio
+
+### PUT - Actualizar Propiedad├── Controllers/
+
+```│   └── PropertiesController.cs      # Endpoints REST
+
+PUT /api/Properties/{id}├── Services/
+
+Content-Type: application/json│   ├── IPropertyService.cs          # Interfaz del servicio
+
 │   ├── PropertyService.cs           # Lógica de negocio
-│   └── MongoDbContext.cs            # Contexto de MongoDB
-├── Repositories/
-│   ├── IPropertyRepository.cs       # Interfaz del repositorio
-│   └── PropertyRepository.cs        # Acceso a datos
-├── Models/
-│   └── Property.cs                  # Modelo de entidad
-├── DTOs/
-│   ├── PropertyDto.cs               # DTO de transferencia
+
+{│   └── MongoDbContext.cs            # Contexto de MongoDB
+
+  "idOwner": "507f1f77bcf86cd799439010",├── Repositories/
+
+  "name": "Casa Actualizada",│   ├── IPropertyRepository.cs       # Interfaz del repositorio
+
+  "address": "Nueva Dirección",│   └── PropertyRepository.cs        # Acceso a datos
+
+  "price": 400000,├── Models/
+
+  "image": "https://via.placeholder.com/400x300"│   └── Property.cs                  # Modelo de entidad
+
+}├── DTOs/
+
+```│   ├── PropertyDto.cs               # DTO de transferencia
+
 │   ├── PropertyFilterDto.cs         # DTO de filtros
-│   └── ApiResponse.cs               # Respuesta estandarizada
-├── Configuration/
-│   └── MongoDbSettings.cs           # Configuración de BD
-├── Middleware/
+
+### DELETE - Eliminar Propiedad│   └── ApiResponse.cs               # Respuesta estandarizada
+
+```├── Configuration/
+
+DELETE /api/Properties/{id}│   └── MongoDbSettings.cs           # Configuración de BD
+
+```├── Middleware/
+
 │   └── ExceptionHandlingMiddleware.cs # Manejo de excepciones
-├── Tests/
-│   ├── PropertyFilterDtoTests.cs    # Pruebas de validación
-│   ├── PropertyServiceTests.cs      # Pruebas de servicio
-│   └── PropertyRepositoryTests.cs   # Pruebas de repositorio
+
+### POST - Filtrar Propiedades├── Tests/
+
+```│   ├── PropertyFilterDtoTests.cs    # Pruebas de validación
+
+POST /api/Properties/filter│   ├── PropertyServiceTests.cs      # Pruebas de servicio
+
+Content-Type: application/json│   └── PropertyRepositoryTests.cs   # Pruebas de repositorio
+
 ├── Program.cs                        # Configuración de DI
-├── appsettings.json                 # Configuración
-└── RealStateAPI.csproj              # Archivo del proyecto
-```
 
-## 🌐 Endpoints API
+{├── appsettings.json                 # Configuración
 
-### Base URL
+  "minPrice": 100000,└── RealStateAPI.csproj              # Archivo del proyecto
 
-```
-https://localhost:5001/api/properties
-```
+  "maxPrice": 500000,```
 
-### 1. Obtener Todas las Propiedades
+  "name": "Casa",
 
-```http
-GET /api/properties
-```
+  "address": "Miami"## 🌐 Endpoints API
 
-**Respuesta (200 OK):**
-
-```json
-{
-  "success": true,
-  "message": "Propiedades obtenidas exitosamente",
-  "data": [
-    {
-      "id": "507f1f77bcf86cd799439011",
-      "idOwner": "507f1f77bcf86cd799439010",
-      "name": "Casa Moderna",
-      "address": "Avenida Principal 123",
-      "price": 250000,
-      "image": "https://example.com/image.jpg"
-    }
-  ],
-  "errors": null
 }
+
+```### Base URL
+
+
+
+---```
+
+https://localhost:5001/api/properties
+
+## 📁 Estructura del Proyecto```
+
+
+
+```### 1. Obtener Todas las Propiedades
+
+realState/
+
+├── RealStateAPI/                    # Proyecto principal .NET```http
+
+│   ├── Controllers/GET /api/properties
+
+│   │   └── PropertiesController.cs  # Endpoints REST```
+
+│   ├── Services/
+
+│   │   ├── IPropertyService.cs      # Interfaz de servicios**Respuesta (200 OK):**
+
+│   │   ├── PropertyService.cs       # Lógica de negocio
+
+│   │   └── MongoDbContext.cs        # Contexto MongoDB```json
+
+│   ├── Repositories/{
+
+│   │   ├── IPropertyRepository.cs   # Interfaz repositorio  "success": true,
+
+│   │   └── PropertyRepository.cs    # Acceso a datos  "message": "Propiedades obtenidas exitosamente",
+
+│   ├── Models/  "data": [
+
+│   │   └── Property.cs              # Modelo de dominio    {
+
+│   ├── DTOs/      "id": "507f1f77bcf86cd799439011",
+
+│   │   ├── PropertyDto.cs           # DTO propiedades      "idOwner": "507f1f77bcf86cd799439010",
+
+│   │   ├── PropertyFilterDto.cs     # DTO filtros      "name": "Casa Moderna",
+
+│   │   └── ApiResponse.cs           # DTO respuestas      "address": "Avenida Principal 123",
+
+│   ├── Configuration/      "price": 250000,
+
+│   │   └── MongoDbSettings.cs       # Configuración      "image": "https://example.com/image.jpg"
+
+│   ├── Tests/                       # Pruebas unitarias    }
+
+│   ├── appsettings.Development.json # Config desarrollo  ],
+
+│   ├── appsettings.json             # Config producción  "errors": null
+
+│   └── Program.cs                   # Startup principal}
+
+│```
+
+├── Scripts/                         # Scripts útiles
+
+│   ├── insert-properties.ps1        # Insertar datos### 2. Obtener Propiedad por ID
+
+│   ├── clean-properties.ps1         # Limpiar BD
+
+│   ├── full-test.ps1                # Pruebas completas```http
+
+│   ├── verify-atlas-connection.ps1  # Verificar conexiónGET /api/properties/{id}
+
+│   └── mongodb-init.js              # Script MongoDB```
+
+│
+
+└── README.md                        # Este archivo**Parámetros:**
+
 ```
-
-### 2. Obtener Propiedad por ID
-
-```http
-GET /api/properties/{id}
-```
-
-**Parámetros:**
 
 - `id` (string, requerido): ID de la propiedad (ObjectId de MongoDB)
 
+---
+
 **Ejemplo:**
 
+## 🗄️ MongoDB Atlas
+
 ```http
-GET /api/properties/507f1f77bcf86cd799439011
+
+### Colección: PropertiesGET /api/properties/507f1f77bcf86cd799439011
+
 ```
 
-**Respuesta (200 OK):**
+**Campos:**
 
-```json
+```javascript**Respuesta (200 OK):**
+
 {
-  "success": true,
-  "message": "Propiedad obtenida exitosamente",
-  "data": {
-    "id": "507f1f77bcf86cd799439011",
-    "idOwner": "507f1f77bcf86cd799439010",
-    "name": "Casa Moderna",
-    "address": "Avenida Principal 123",
-    "price": 250000,
+
+  "_id": ObjectId,```json
+
+  "idOwner": String,{
+
+  "name": String,  "success": true,
+
+  "address": String,  "message": "Propiedad obtenida exitosamente",
+
+  "price": Number,  "data": {
+
+  "image": String,    "id": "507f1f77bcf86cd799439011",
+
+  "createdAt": Date,    "idOwner": "507f1f77bcf86cd799439010",
+
+  "updatedAt": Date    "name": "Casa Moderna",
+
+}    "address": "Avenida Principal 123",
+
+```    "price": 250000,
+
     "image": "https://example.com/image.jpg"
-  },
-  "errors": null
-}
-```
+
+**Índices Creados:**  },
+
+- Text Index: name, address (búsqueda por texto)  "errors": null
+
+- Regular Index: price (filtrado por precio)}
+
+- Regular Index: idOwner (propiedades por propietario)```
+
+- Compound Index: price + idOwner (queries complejas)
 
 **Respuesta (404 Not Found):**
 
+---
+
 ```json
-{
+
+## 🧪 Testing{
+
   "success": false,
-  "message": "Propiedad con ID 507f1f77bcf86cd799439011 no encontrada",
+
+### Opción 1: Swagger UI (Recomendado)  "message": "Propiedad con ID 507f1f77bcf86cd799439011 no encontrada",
+
   "data": null,
-  "errors": null
-}
-```
+
+1. Abre http://localhost:5298/swagger/index.html  "errors": null
+
+2. Click en endpoint}
+
+3. Click "Try it out"```
+
+4. Ejecuta
 
 ### 3. Filtrar Propiedades (POST)
 
+### Opción 2: PowerShell
+
 ```http
-POST /api/properties/filter
-Content-Type: application/json
+
+```powershellPOST /api/properties/filter
+
+cd RealStateAPIContent-Type: application/json
+
+powershell -ExecutionPolicy Bypass -File full-test.ps1```
+
 ```
 
 **Cuerpo de la Solicitud:**
 
+### Opción 3: cURL
+
 ```json
-{
-  "name": "Casa",
-  "address": "Avenida",
+
+```bash{
+
+# GET todas las propiedades  "name": "Casa",
+
+curl http://localhost:5298/api/Properties  "address": "Avenida",
+
   "minPrice": 100000,
-  "maxPrice": 500000
-}
-```
+
+# POST crear  "maxPrice": 500000
+
+curl -X POST http://localhost:5298/api/Properties \}
+
+  -H "Content-Type: application/json" \```
+
+  -d '{"idOwner":"507f1f77bcf86cd799439010","name":"Casa","address":"Miami","price":350000,"image":"https://example.com/image.jpg"}'
 
 **Todos los campos son opcionales:**
 
-- `name` (string): Búsqueda parcial del nombre
-- `address` (string): Búsqueda parcial de la dirección
-- `minPrice` (decimal): Precio mínimo
-- `maxPrice` (decimal): Precio máximo
+# Filtrar
 
-**Respuesta (200 OK):**
+curl -X POST http://localhost:5298/api/Properties/filter \- `name` (string): Búsqueda parcial del nombre
 
-```json
-{
-  "success": true,
+  -H "Content-Type: application/json" \- `address` (string): Búsqueda parcial de la dirección
+
+  -d '{"minPrice":100000,"maxPrice":500000}'- `minPrice` (decimal): Precio mínimo
+
+```- `maxPrice` (decimal): Precio máximo
+
+
+
+### Scripts de Testing**Respuesta (200 OK):**
+
+
+
+```bash```json
+
+# Verificar conexión a MongoDB Atlas{
+
+powershell -ExecutionPolicy Bypass -File verify-atlas-connection.ps1  "success": true,
+
   "message": "Se encontraron 2 propiedades que coinciden con los criterios",
-  "data": [
-    {
+
+# Insertar datos de prueba  "data": [
+
+powershell -ExecutionPolicy Bypass -File insert-properties.ps1    {
+
       "id": "507f1f77bcf86cd799439011",
-      "idOwner": "507f1f77bcf86cd799439010",
-      "name": "Casa Moderna",
-      "address": "Avenida Principal 123",
+
+# Limpiar base de datos      "idOwner": "507f1f77bcf86cd799439010",
+
+powershell -ExecutionPolicy Bypass -File clean-properties.ps1      "name": "Casa Moderna",
+
+```      "address": "Avenida Principal 123",
+
       "price": 250000,
-      "image": "https://example.com/image.jpg"
+
+---      "image": "https://example.com/image.jpg"
+
     },
-    {
+
+## 🏗️ Arquitectura    {
+
       "id": "507f1f77bcf86cd799439012",
-      "idOwner": "507f1f77bcf86cd799439013",
+
+### Patrón: Clean Architecture + Repository Pattern      "idOwner": "507f1f77bcf86cd799439013",
+
       "name": "Casa Clásica",
-      "address": "Avenida Secundaria 456",
-      "price": 180000,
-      "image": "https://example.com/image2.jpg"
-    }
-  ],
-  "errors": null
+
+```      "address": "Avenida Secundaria 456",
+
+Controllers → Services → Repositories → MongoDB      "price": 180000,
+
+   (REST)      (Lógica)   (Datos)       (BD)      "image": "https://example.com/image2.jpg"
+
+    ↓            ↓           ↓            ↓    }
+
+  HTTP        Negocio      CRUD        Almacen  ],
+
+```  "errors": null
+
 }
-```
 
-**Respuesta (400 Bad Request):**
+### Layers:```
 
-```json
-{
-  "success": false,
+
+
+1. **Controllers** - Maneja solicitudes HTTP**Respuesta (400 Bad Request):**
+
+2. **Services** - Lógica de negocio y validaciones
+
+3. **Repositories** - Acceso a datos```json
+
+4. **Models** - Entidades de dominio{
+
+5. **DTOs** - Transferencia de datos  "success": false,
+
   "message": "Parámetros de filtrado inválidos",
-  "data": null,
+
+### Dependency Injection  "data": null,
+
   "errors": [
-    "MinPrice no puede ser mayor que MaxPrice",
+
+Configurado en `Program.cs`:    "MinPrice no puede ser mayor que MaxPrice",
+
     "Precio no puede ser negativo"
-  ]
-}
-```
 
-### 4. Buscar Propiedades (GET con Query Parameters)
+```csharp  ]
 
-```http
+builder.Services.AddSingleton<MongoDbContext>();}
+
+builder.Services.AddScoped<IPropertyRepository, PropertyRepository>();```
+
+builder.Services.AddScoped<IPropertyService, PropertyService>();
+
+```### 4. Buscar Propiedades (GET con Query Parameters)
+
+
+
+---```http
+
 GET /api/properties/search?name=Casa&address=Avenida&minPrice=100000&maxPrice=500000
-```
 
-**Parámetros de Query (todos opcionales):**
+## 📊 Propiedades de Prueba```
 
-- `name` (string): Búsqueda parcial del nombre
-- `address` (string): Búsqueda parcial de la dirección
-- `minPrice` (decimal): Precio mínimo
-- `maxPrice` (decimal): Precio máximo
 
-**Ejemplo con parámetros:**
 
-```http
-GET /api/properties/search?name=Casa&minPrice=100000
-```
+8 propiedades precargadas en MongoDB Atlas:**Parámetros de Query (todos opcionales):**
 
-**Respuesta:** Idéntica al endpoint POST `/filter`
 
-### 5. Endpoint de Salud
 
-```http
+| # | Nombre | Ubicación | Precio USD |- `name` (string): Búsqueda parcial del nombre
+
+|---|--------|-----------|-----------|- `address` (string): Búsqueda parcial de la dirección
+
+| 1 | Casa Moderna en Miami | Ocean Drive 123, Miami | $385,000 |- `minPrice` (decimal): Precio mínimo
+
+| 2 | Apartamento Lujo Fort Lauderdale | Las Olas Boulevard 456 | $495,000 |- `maxPrice` (decimal): Precio máximo
+
+| 3 | Villa Moderna Tampa | Bayshore Boulevard 789 | $320,000 |
+
+| 4 | Piso Centro Orlando | International Drive 101 | $295,000 |**Ejemplo con parámetros:**
+
+| 5 | Chalet Historico Jacksonville | Riverside Avenue 202 | $410,000 |
+
+| 6 | Penthouse Miami Beach | Collins Avenue 259 | $720,000 |```http
+
+| 7 | Casa Playa Clearwater | Gulf to Bay Boulevard 55 | $475,000 |GET /api/properties/search?name=Casa&minPrice=100000
+
+| 8 | Loft Industrial Naples | Central Avenue 78 | $385,000 |```
+
+
+
+---**Respuesta:** Idéntica al endpoint POST `/filter`
+
+
+
+## 🚀 Deployment### 5. Endpoint de Salud
+
+
+
+### Azure App Service```http
+
 GET /health
-```
 
-**Respuesta (200 OK):**
+1. **Crear App Service:**```
+
+```bash
+
+az webapp create --name RealStateAPI --resource-group myGroup --plan myPlan**Respuesta (200 OK):**
+
+```
 
 ```json
-{
-  "status": "healthy",
-  "timestamp": "2024-10-18T12:34:56Z"
-}
+
+2. **Publicar:**{
+
+```bash  "status": "healthy",
+
+dotnet publish -c Release  "timestamp": "2024-10-18T12:34:56Z"
+
+```}
+
 ```
 
-## 🧪 Pruebas Unitarias
+3. **Deploy:**
 
-### Ejecutar Todas las Pruebas
+```bash## 🧪 Pruebas Unitarias
 
-```bash
+az webapp deployment source config-zip --resource-group myGroup --name RealStateAPI --src bin/Release/net8.0/publish/app.zip
+
+```### Ejecutar Todas las Pruebas
+
+
+
+### Heroku```bash
+
 dotnet test
-```
 
-### Ejecutar Pruebas Específicas
+1. **Crear app:**```
 
 ```bash
-# Solo pruebas de PropertyFilterDto
-dotnet test --filter "PropertyFilterDtoTests"
 
-# Solo pruebas de PropertyService
+heroku create realstate-api### Ejecutar Pruebas Específicas
+
+```
+
+```bash
+
+2. **Deploy:**# Solo pruebas de PropertyFilterDto
+
+```bashdotnet test --filter "PropertyFilterDtoTests"
+
+git push heroku main
+
+```# Solo pruebas de PropertyService
+
 dotnet test --filter "PropertyServiceTests"
 
+### AWS EC2
+
 # Solo pruebas de PropertyRepository
-dotnet test --filter "PropertyRepositoryTests"
-```
 
-### Cobertura de Pruebas
+1. Crear instancia Ubuntudotnet test --filter "PropertyRepositoryTests"
 
-Las pruebas incluyen:
+2. Instalar .NET Runtime```
 
-✅ **PropertyFilterDtoTests** (9 pruebas)
+3. Copiar archivos publicados
 
-- Validación de parámetros de filtro
-- Rango de precios válidos e inválidos
-- Búsqueda por nombre y dirección
+4. Ejecutar: `dotnet RealStateAPI.dll`### Cobertura de Pruebas
+
+
+
+---Las pruebas incluyen:
+
+
+
+## ⚙️ Configuración por Entorno✅ **PropertyFilterDtoTests** (9 pruebas)
+
+
+
+### Development (appsettings.Development.json)- Validación de parámetros de filtro
+
+- Logging: Debug- Rango de precios válidos e inválidos
+
+- CORS: Permitido desde localhost- Búsqueda por nombre y dirección
+
+- MongoDB: Base de datos de prueba
 
 ✅ **PropertyServiceTests** (11 pruebas)
 
-- Obtención de todas las propiedades
-- Búsqueda por ID
-- Filtrado de propiedades
+### Production (appsettings.json)
+
+- Logging: Information- Obtención de todas las propiedades
+
+- CORS: Restringido a dominios específicos- Búsqueda por ID
+
+- MongoDB: Base de datos principal- Filtrado de propiedades
+
 - Validación de parámetros
-- Manejo de errores
 
-✅ **PropertyRepositoryTests** (8 pruebas)
+---- Manejo de errores
 
-- Validación de ObjectIds
+
+
+## 🔐 Seguridad✅ **PropertyRepositoryTests** (8 pruebas)
+
+
+
+### Implementado:- Validación de ObjectIds
+
 - Creación de entidades
-- Mapeo de DTOs
-- Respuestas API estandarizadas
 
-**Total: 28 pruebas exitosas**
+✅ Validación de entrada- Mapeo de DTOs
 
-## 💡 Ejemplos de Uso
+✅ Manejo de excepciones- Respuestas API estandarizadas
 
-### Usando cURL
+✅ CORS configurado
 
-```bash
-# 1. Obtener todas las propiedades
+✅ Middleware de errores**Total: 28 pruebas exitosas**
+
+
+
+### Pendiente:## 💡 Ejemplos de Uso
+
+
+
+- [ ] JWT Authentication### Usando cURL
+
+- [ ] Rate Limiting
+
+- [ ] API Key Management```bash
+
+- [ ] HTTPS Enforcement# 1. Obtener todas las propiedades
+
 curl -X GET "https://localhost:5001/api/properties" -H "accept: application/json"
 
+---
+
 # 2. Obtener propiedad por ID
-curl -X GET "https://localhost:5001/api/properties/507f1f77bcf86cd799439011" -H "accept: application/json"
 
-# 3. Filtrar propiedades (POST)
+## 📝 Variables de Entornocurl -X GET "https://localhost:5001/api/properties/507f1f77bcf86cd799439011" -H "accept: application/json"
+
+
+
+Crear archivo `.env` en `RealStateAPI/`:# 3. Filtrar propiedades (POST)
+
 curl -X POST "https://localhost:5001/api/properties/filter" \
-  -H "Content-Type: application/json" \
-  -d '{"name":"Casa","minPrice":100000,"maxPrice":500000}'
 
-# 4. Buscar propiedades (GET)
-curl -X GET "https://localhost:5001/api/properties/search?name=Casa&minPrice=100000" \
-  -H "accept: application/json"
+```  -H "Content-Type: application/json" \
+
+MONGODB_CONNECTION_STRING=mongodb+srv://user:password@cluster.mongodb.net/  -d '{"name":"Casa","minPrice":100000,"maxPrice":500000}'
+
+DATABASE_NAME=RealStateDB_Dev
+
+COLLECTION_NAME=Properties# 4. Buscar propiedades (GET)
+
+API_PORT=5298curl -X GET "https://localhost:5001/api/properties/search?name=Casa&minPrice=100000" \
+
+ENVIRONMENT=Development  -H "accept: application/json"
+
+```
 
 # 5. Verificar salud de la API
-curl -X GET "https://localhost:5001/health" -H "accept: application/json"
+
+---curl -X GET "https://localhost:5001/health" -H "accept: application/json"
+
 ```
+
+## 🐛 Troubleshooting
 
 ### Usando Postman
 
-1. **Descargar Postman** desde https://www.postman.com/downloads/
-2. **Crear nueva colección** llamada "Real Estate API"
-3. **Agregar requests** para cada endpoint usando ejemplos arriba
+### Error: "Connection refused"
+
+```1. **Descargar Postman** desde https://www.postman.com/downloads/
+
+Solución: Asegúrate que dotnet run está ejecutando2. **Crear nueva colección** llamada "Real Estate API"
+
+```3. **Agregar requests** para cada endpoint usando ejemplos arriba
+
 4. **Guardar colección** para reutilizar
 
-### Usando cliente HTTP de VS Code
+### Error: "MongoDB not found"
 
-Instala la extensión **REST Client** en VS Code y crea archivo `requests.http`:
+```### Usando cliente HTTP de VS Code
 
-```http
-### Obtener todas las propiedades
-GET https://localhost:5001/api/properties
-Accept: application/json
+Solución: Verifica la connection string en appsettings.Development.json
 
-### Obtener propiedad por ID
-GET https://localhost:5001/api/properties/507f1f77bcf86cd799439011
-Accept: application/json
+```Instala la extensión **REST Client** en VS Code y crea archivo `requests.http`:
+
+
+
+### Error: "Port 5298 already in use"```http
+
+```### Obtener todas las propiedades
+
+dotnet run --urls "http://localhost:5299"GET https://localhost:5001/api/properties
+
+```Accept: application/json
+
+
+
+### Error: "404 Property not found"### Obtener propiedad por ID
+
+```GET https://localhost:5001/api/properties/507f1f77bcf86cd799439011
+
+Solución: Verifica que el ID es válidoAccept: application/json
+
+```
 
 ### Filtrar propiedades
-POST https://localhost:5001/api/properties/filter
+
+---POST https://localhost:5001/api/properties/filter
+
 Content-Type: application/json
 
-{
-  "name": "Casa",
-  "minPrice": 100000,
-  "maxPrice": 500000
-}
+## 📚 Tecnologías Utilizadas
 
-### Buscar propiedades
-GET https://localhost:5001/api/properties/search?name=Casa&minPrice=100000
+{
+
+- **Backend:** .NET 8.0  "name": "Casa",
+
+- **Lenguaje:** C#  "minPrice": 100000,
+
+- **Base de Datos:** MongoDB 7.0+  "maxPrice": 500000
+
+- **ORM/Driver:** MongoDB.Driver 2.24.0}
+
+- **API Documentation:** Swagger/OpenAPI
+
+- **Testing:** NUnit, Moq### Buscar propiedades
+
+- **Logging:** Microsoft.Extensions.LoggingGET https://localhost:5001/api/properties/search?name=Casa&minPrice=100000
+
 Accept: application/json
+
+---
 
 ### Health check
-GET https://localhost:5001/health
+
+## 🤝 ContribuyendoGET https://localhost:5001/health
+
 Accept: application/json
-```
 
-## 🏗️ Arquitectura
+1. Fork el repositorio```
 
-### Capas del Proyecto
+2. Crea rama: `git checkout -b feature/nueva-funcionalidad`
 
-```
+3. Commit: `git commit -m "Agrega nueva funcionalidad"`## 🏗️ Arquitectura
+
+4. Push: `git push origin feature/nueva-funcionalidad`
+
+5. Pull Request### Capas del Proyecto
+
+
+
+---```
+
 ┌─────────────────────────────────────────┐
-│        Controllers (REST API)           │
+
+## 📞 Soporte│        Controllers (REST API)           │
+
 ├─────────────────────────────────────────┤
-│   Validación de entrada y respuestas    │
+
+Para reportar bugs o solicitar features, abre un issue en GitHub.│   Validación de entrada y respuestas    │
+
 ├─────────────────────────────────────────┤
-│    Services (Lógica de Negocio)         │
+
+---│    Services (Lógica de Negocio)         │
+
 ├─────────────────────────────────────────┤
-│  Repositories (Acceso a Datos)          │
+
+## 📄 Licencia│  Repositories (Acceso a Datos)          │
+
 ├─────────────────────────────────────────┤
-│        MongoDB (Base de Datos)          │
+
+MIT License - Ver LICENSE.md│        MongoDB (Base de Datos)          │
+
 └─────────────────────────────────────────┘
-```
 
-### Patrones Implementados
+---```
 
-1. **Repository Pattern**: Abstracción del acceso a datos
-2. **Service Layer Pattern**: Lógica de negocio centralizada
-3. **DTO Pattern**: Transferencia de datos segura y tipada
-4. **Dependency Injection**: Inyección de dependencias con contenedor de servicios
-5. **Middleware Pattern**: Manejo centralizado de excepciones
-6. **Factory Pattern**: Creación de objetos MongoDB
 
-## 📊 Modelo de Datos
 
-### Colección: Properties
+## ✅ Checklist Implementado### Patrones Implementados
 
-```json
+
+
+- [x] API REST con 6 endpoints1. **Repository Pattern**: Abstracción del acceso a datos
+
+- [x] MongoDB Atlas conectado2. **Service Layer Pattern**: Lógica de negocio centralizada
+
+- [x] CRUD completo funcional3. **DTO Pattern**: Transferencia de datos segura y tipada
+
+- [x] Filtrado de propiedades4. **Dependency Injection**: Inyección de dependencias con contenedor de servicios
+
+- [x] Swagger/OpenAPI documentación5. **Middleware Pattern**: Manejo centralizado de excepciones
+
+- [x] Validación de datos6. **Factory Pattern**: Creación de objetos MongoDB
+
+- [x] Manejo de errores
+
+- [x] Tests unitarios## 📊 Modelo de Datos
+
+- [x] Scripts de testing
+
+- [x] Propiedades de prueba insertadas### Colección: Properties
+
+- [x] Repositorio GitHub inicializado
+
+- [x] README completo```json
+
 {
-  "_id": ObjectId("507f1f77bcf86cd799439011"),
-  "idOwner": ObjectId("507f1f77bcf86cd799439010"),
-  "name": "Casa Moderna",
-  "address": "Avenida Principal 123",
-  "price": 250000,
-  "image": "https://example.com/image.jpg",
-  "createdAt": ISODate("2024-10-18T10:00:00Z"),
-  "updatedAt": ISODate("2024-10-18T10:00:00Z")
-}
-```
 
-## 🔐 Seguridad
+---  "_id": ObjectId("507f1f77bcf86cd799439011"),
+
+  "idOwner": ObjectId("507f1f77bcf86cd799439010"),
+
+## 🎯 Próximas Fases  "name": "Casa Moderna",
+
+  "address": "Avenida Principal 123",
+
+### Fase 2: Frontend  "price": 250000,
+
+- React/Vue.js para interfaz  "image": "https://example.com/image.jpg",
+
+- Conexión con backend API  "createdAt": ISODate("2024-10-18T10:00:00Z"),
+
+- Autenticación de usuarios  "updatedAt": ISODate("2024-10-18T10:00:00Z")
+
+}
+
+### Fase 3: Autenticación```
+
+- JWT tokens
+
+- Rol-based access control## 🔐 Seguridad
+
+- OAuth2/Google Sign-in
 
 ### Recomendaciones para Producción
 
-1. **HTTPS Obligatorio**: Siempre usar HTTPS en producción
-2. **Autenticación**: Implementar JWT o OAuth2
-3. **CORS**: Configurar orígenes permitidos específicos
+### Fase 4: Deployment
+
+- CI/CD pipeline1. **HTTPS Obligatorio**: Siempre usar HTTPS en producción
+
+- Docker containerization2. **Autenticación**: Implementar JWT o OAuth2
+
+- Production deployment3. **CORS**: Configurar orígenes permitidos específicos
+
 4. **Validación**: Validar todas las entradas del usuario
-5. **Rate Limiting**: Implementar límite de solicitudes
+
+---5. **Rate Limiting**: Implementar límite de solicitudes
+
 6. **MongoDB Authentication**: Usar credenciales en producción
+
+**Última actualización:** 19 de octubre de 2025
 
 ## 🚀 Deployment
 
+**Versión:** 1.0.0
+
 ### Publicar la Aplicación
+
+**Estado:** ✅ Producción - API 100% Funcional
 
 ```bash
 # Release build
