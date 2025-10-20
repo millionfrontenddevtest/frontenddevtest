@@ -1,0 +1,257 @@
+{
+  "info": {
+    "_postman_id": "12345678-1234-1234-1234-123456789012",
+    "name": "Real Estate API - MongoDB",
+    "description": "Colección de prueba para la API de Real Estate\n\nBase URL: http://localhost:5000",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Properties",
+      "item": [
+        {
+          "name": "GET - Obtener Todas las Propiedades",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/properties",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "properties"
+              ]
+            },
+            "description": "Obtiene todas las propiedades disponibles en la base de datos"
+          },
+          "response": []
+        },
+        {
+          "name": "GET - Obtener Propiedad por ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/properties/6708f12b3f1a9e4c8b2d5c01",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "properties",
+                "6708f12b3f1a9e4c8b2d5c01"
+              ]
+            },
+            "description": "Obtiene una propiedad específica por su ID"
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Crear Nueva Propiedad",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idOwner\": \"507f1f77bcf86cd799439020\",\n  \"name\": \"Nueva Casa de Prueba\",\n  \"address\": \"Calle Nueva 456, Ciudad\",\n  \"price\": 180000,\n  \"image\": \"https://example.com/new-property.jpg\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/properties",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "properties"
+              ]
+            },
+            "description": "Crea una nueva propiedad en la base de datos"
+          },
+          "response": []
+        },
+        {
+          "name": "PUT - Actualizar Propiedad",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idOwner\": \"507f1f77bcf86cd799439010\",\n  \"name\": \"Casa Actualizada\",\n  \"address\": \"Calle Actualizada 789\",\n  \"price\": 260000,\n  \"image\": \"https://example.com/updated.jpg\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/properties/6708f12b3f1a9e4c8b2d5c01",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "properties",
+                "6708f12b3f1a9e4c8b2d5c01"
+              ]
+            },
+            "description": "Actualiza una propiedad existente"
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE - Eliminar Propiedad",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/properties/6708f12b3f1a9e4c8b2d5c01",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "properties",
+                "6708f12b3f1a9e4c8b2d5c01"
+              ]
+            },
+            "description": "Elimina una propiedad existente"
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Filtrar Propiedades por Precio",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"minPrice\": 100000,\n  \"maxPrice\": 300000\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/properties/filter",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "properties",
+                "filter"
+              ]
+            },
+            "description": "Filtra propiedades por rango de precio"
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Filtrar Propiedades por Nombre",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"casa\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/properties/filter",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "properties",
+                "filter"
+              ]
+            },
+            "description": "Filtra propiedades por nombre (case-insensitive)"
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Filtrar Propiedades por Dirección",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"madrid\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/properties/filter",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "properties",
+                "filter"
+              ]
+            },
+            "description": "Filtra propiedades por dirección (case-insensitive)"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
