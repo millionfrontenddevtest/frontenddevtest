@@ -1,0 +1,74 @@
+// Prisma Schema for Real Estate System
+// Strictly follows the specified database structure with exact field names and relationships
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // Change to "mysql", "sqlserver", or "sqlite" as needed
+  url      = env("DATABASE_URL")
+}
+
+/// Owner table - stores property owner information
+model Owner {
+  IdOwner    Int        @id @default(autoincrement())
+  Name       String     @db.VarChar(255)
+  Address    String     @db.VarChar(500)
+  Photo      Bytes?
+  Birthday   DateTime   @db.Date
+  
+  // Relationships
+  properties Property[]
+
+  @@map("Owner")
+}
+
+/// Property table - stores real estate property information
+model Property {
+  IdProperty   Int      @id @default(autoincrement())
+  Name         String   @db.VarChar(255)
+  Address      String   @db.VarChar(500)
+  Price        Decimal  @db.Decimal(18, 2)
+  CodeInternal String   @unique @db.VarChar(50)
+  Year         Int
+  IdOwner      Int
+  
+  // Relationships
+  owner              Owner            @relation(fields: [IdOwner], references: [IdOwner], onDelete: Cascade)
+  property_images    PropertyImage[]
+  property_traces    PropertyTrace[]
+
+  @@map("Property")
+  @@index([IdOwner])
+}
+
+/// PropertyImage table - stores images associated with properties
+model PropertyImage {
+  IdPropertyImage Int     @id @default(autoincrement())
+  IdProperty      Int
+  File            Bytes
+  Enabled         Boolean @default(true)
+  
+  // Relationships
+  property Property @relation(fields: [IdProperty], references: [IdProperty], onDelete: Cascade)
+
+  @@map("PropertyImage")
+  @@index([IdProperty])
+}
+
+/// PropertyTrace table - stores historical transaction traces for properties
+model PropertyTrace {
+  IdPropertyTrace Int      @id @default(autoincrement())
+  IdProperty      Int
+  DateSale        DateTime @db.Date
+  Name            String   @db.VarChar(255)
+  Value           Decimal  @db.Decimal(18, 2)
+  Tax             Decimal  @db.Decimal(18, 2)
+  
+  // Relationships
+  property Property @relation(fields: [IdProperty], references: [IdProperty], onDelete: Cascade)
+
+  @@map("PropertyTrace")
+  @@index([IdProperty])
+}

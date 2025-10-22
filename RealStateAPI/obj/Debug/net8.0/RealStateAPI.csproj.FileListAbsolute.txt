@@ -129,3 +129,4 @@ C:\Users\jose_\OneDrive\Desktop\realState\RealStateAPI\obj\Debug\net8.0\refint\R
 C:\Users\jose_\OneDrive\Desktop\realState\RealStateAPI\obj\Debug\net8.0\RealStateAPI.pdb
 C:\Users\jose_\OneDrive\Desktop\realState\RealStateAPI\obj\Debug\net8.0\RealStateAPI.genruntimeconfig.cache
 C:\Users\jose_\OneDrive\Desktop\realState\RealStateAPI\obj\Debug\net8.0\ref\RealStateAPI.dll
+C:\Users\jose_\OneDrive\Desktop\realState\RealStateAPI\obj\Debug\net8.0\RealStateAPI.sourcelink.json

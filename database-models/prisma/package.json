@@ -1,0 +1,26 @@
+{
+  "name": "realstate-prisma-models",
+  "version": "1.0.0",
+  "description": "Prisma database models for Real Estate System",
+  "main": "index.js",
+  "scripts": {
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio",
+    "prisma:push": "prisma db push",
+    "prisma:pull": "prisma db pull"
+  },
+  "keywords": [
+    "prisma",
+    "database",
+    "orm",
+    "real-estate"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@prisma/client": "^5.7.1",
+    "prisma": "^5.7.1",
+    "typescript": "^5.3.3"
+  }
+}
