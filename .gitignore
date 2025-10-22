@@ -44,7 +44,7 @@ appsettings.Local.json
 # ============ APPLICATION SETTINGS ============
 # Keep only example files
 !appsettings.json
-!RealStateAPI/.env.example
+!backend/.env.example
 
 # ============ DATABASE FILES ============
 *.mdb

@@ -1,0 +1,7 @@
+# Ignorar archivos subidos (imágenes)
+*
+!.gitignore
+!README.md
+
+# Mantener la estructura de carpetas
+!*/

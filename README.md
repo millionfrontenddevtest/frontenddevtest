@@ -88,13 +88,13 @@ cd frontenddevtest
 
 3. Crea un clustergit clone <url-del-repositorio>
 
-4. En Database → Browse Collections, crea:cd realState/RealStateAPI
+4. En Database → Browse Collections, crea:cd realState/backend
 
    - Database: `RealStateDB_Dev`
 
    - Collection: `Properties`# O navega manualmente a la carpeta del proyecto
 
-cd "c:\Users\<usuario>\OneDrive\Desktop\realState\RealStateAPI"
+cd "c:\Users\<usuario>\OneDrive\Desktop\realState\backend"
 
 5. Copia tu connection string (formato: `mongodb+srv://user:password@cluster.mongodb.net/...`)```
 
@@ -104,7 +104,7 @@ cd "c:\Users\<usuario>\OneDrive\Desktop\realState\RealStateAPI"
 
 
 
-Edita `RealStateAPI/appsettings.Development.json`:```bash
+Edita `backend/appsettings.Development.json`:```bash
 
 dotnet restore
 
@@ -134,7 +134,7 @@ dotnet test
 
 ```bash```
 
-cd RealStateAPI
+cd backend
 
 dotnet restore### 5. Iniciar MongoDB
 
@@ -260,7 +260,7 @@ Content-Type: application/json$env:MongoDbSettings__DatabaseName = "RealStateDB"
 
 ````
 
-RealStateAPI/
+backend/
 
 ### PUT - Actualizar Propiedad├── Controllers/
 
@@ -312,7 +312,7 @@ Content-Type: application/json│   └── PropertyRepositoryTests.cs   # Pru
 
 {├── appsettings.json                 # Configuración
 
-  "minPrice": 100000,└── RealStateAPI.csproj              # Archivo del proyecto
+  "minPrice": 100000,└── Backend.csproj              # Archivo del proyecto
 
   "maxPrice": 500000,```
 
@@ -338,7 +338,7 @@ https://localhost:5001/api/properties
 
 realState/
 
-├── RealStateAPI/                    # Proyecto principal .NET```http
+├── backend/                    # Proyecto principal .NET```http
 
 │   ├── Controllers/GET /api/properties
 
@@ -484,7 +484,7 @@ realState/
 
 ```powershellPOST /api/properties/filter
 
-cd RealStateAPIContent-Type: application/json
+cd backendContent-Type: application/json
 
 powershell -ExecutionPolicy Bypass -File full-test.ps1```
 
@@ -664,7 +664,7 @@ GET /health
 
 ```bash
 
-az webapp create --name RealStateAPI --resource-group myGroup --plan myPlan**Respuesta (200 OK):**
+az webapp create --name BackendAPI --resource-group myGroup --plan myPlan**Respuesta (200 OK):**
 
 ````
 
@@ -684,7 +684,7 @@ dotnet publish -c Release  "timestamp": "2024-10-18T12:34:56Z"
 
 ````bash## 🧪 Pruebas Unitarias
 
-az webapp deployment source config-zip --resource-group myGroup --name RealStateAPI --src bin/Release/net8.0/publish/app.zip
+az webapp deployment source config-zip --resource-group myGroup --name BackendAPI --src bin/Release/net8.0/publish/app.zip
 
 ```### Ejecutar Todas las Pruebas
 
@@ -724,7 +724,7 @@ dotnet test --filter "PropertyServiceTests"
 
 3. Copiar archivos publicados
 
-4. Ejecutar: `dotnet RealStateAPI.dll`### Cobertura de Pruebas
+4. Ejecutar: `dotnet Backend.dll`### Cobertura de Pruebas
 
 
 
@@ -800,7 +800,7 @@ curl -X GET "https://localhost:5001/api/properties" -H "accept: application/json
 
 
 
-Crear archivo `.env` en `RealStateAPI/`:# 3. Filtrar propiedades (POST)
+Crear archivo `.env` en `backend/`:# 3. Filtrar propiedades (POST)
 
 curl -X POST "https://localhost:5001/api/properties/filter" \
 
@@ -1024,7 +1024,7 @@ dotnet publish -c Release -o publish
 cd publish
 
 # Ejecutar desde la carpeta publicada
-dotnet RealStateAPI.dll
+dotnet Backend.dll
 ```
 
 ### Usar Docker
@@ -1034,16 +1034,16 @@ Crea un archivo `Dockerfile`:
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ["RealStateAPI.csproj", "."]
-RUN dotnet restore "RealStateAPI.csproj"
+COPY ["Backend.csproj", "."]
+RUN dotnet restore "Backend.csproj"
 COPY . .
-RUN dotnet build "RealStateAPI.csproj" -c Release -o /app/build
+RUN dotnet build "Backend.csproj" -c Release -o /app/build
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /app/build .
 EXPOSE 80
-ENTRYPOINT ["dotnet", "RealStateAPI.dll"]
+ENTRYPOINT ["dotnet", "Backend.dll"]
 ```
 
 Construye e ejecuta:
