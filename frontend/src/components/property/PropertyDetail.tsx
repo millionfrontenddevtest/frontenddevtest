@@ -121,14 +121,6 @@ export const PropertyDetail: React.FC<PropertyDetailProps> = ({
         </div>
 
         {/* Action Buttons */}
-        <div className="flex gap-4 pt-6 border-t border-gray-100">
-          <button className="flex-1 px-8 py-4 bg-luxury-charcoal text-white hover:bg-luxury-gold hover:text-luxury-charcoal transition-all duration-300 font-medium tracking-wide uppercase text-sm border border-luxury-charcoal hover:border-luxury-gold">
-            Contact Owner
-          </button>
-          <button className="flex-1 px-8 py-4 bg-white text-luxury-charcoal hover:bg-luxury-champagne transition-all duration-300 font-medium tracking-wide uppercase text-sm border border-gray-200">
-            Save Property
-          </button>
-        </div>
       </div>
     </Modal>
   );
