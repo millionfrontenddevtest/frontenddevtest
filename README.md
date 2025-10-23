@@ -1,228 +1,212 @@
-# Real Estate API - Backend .NET + MongoDB Atlas# Real State API
+# Real Estate API
 
-Sistema de API REST completo para gestión de propiedades inmobiliarias. Backend desarrollado en **.NET 8** con base de datos **MongoDB Atlas** en la nube.API REST completa construida con **.NET 8**, **C#**, y **MongoDB** para gestionar y filtrar propiedades inmobiliarias. Diseñada siguiendo principios de **Clean Architecture** con capas bien definidas (Controllers, Services, Repositories, Models, DTOs).
-
-## 🎯 Estado del Proyecto## 📋 Tabla de Contenidos
-
-✅ **Backend API 100% Funcional**- [Características](#características)
-
-- ✅ Conexión MongoDB Atlas establecida- [Requisitos Previos](#requisitos-previos)
-
-- ✅ CRUD completo (Create, Read, Update, Delete)- [Instalación](#instalación)
-
-- ✅ Filtrado de propiedades- [Configuración](#configuración)
-
-- ✅ Autenticación preparada- [Estructura del Proyecto](#estructura-del-proyecto)
-
-- ✅ Swagger/OpenAPI documentación- [Endpoints API](#endpoints-api)
-
-- ✅ Tests de integración listos- [Pruebas Unitarias](#pruebas-unitarias)
-
-- ✅ 8 propiedades de prueba insertadas- [Ejemplos de Uso](#ejemplos-de-uso)
-
-- [Arquitectura](#arquitectura)
-
----- [Contribución](#contribución)
-
-## 📋 Tabla de Contenidos## ✨ Características
-
-1. [Requisitos](#requisitos)✅ **Arquitectura Limpia**: Controllers → Services → Repositories → Models
-
-2. [Configuración Rápida](#configuración-rápida)✅ **Inyección de Dependencias**: Configuración completa de DI en Program.cs
-
-3. [API Endpoints](#api-endpoints)✅ **MongoDB Integration**: Driver oficial de MongoDB.Driver v2.24.0
-
-4. [Estructura del Proyecto](#estructura-del-proyecto)✅ **DTOs Tipados**: Validación y mapeo de datos estructurado
-
-5. [MongoDB Atlas](#mongodb-atlas)✅ **Filtrado Avanzado**: Búsqueda por nombre, dirección y rango de precios
-
-6. [Testing](#testing)✅ **Manejo de Errores**: Middleware global de excepciones
-
-7. [Deployment](#deployment)✅ **API Responses Estandarizadas**: Respuestas JSON consistentes
-
-✅ **Swagger/OpenAPI**: Documentación interactiva de endpoints
-
----✅ **Pruebas Unitarias**: Cobertura con NUnit y Moq
-
-✅ **Logging**: Sistema de logging integrado
-
-## 🔧 Requisitos
+Sistema completo para gestión de propiedades inmobiliarias con **Backend .NET 8 + MongoDB Atlas** y **Frontend React + TypeScript**. API REST con arquitectura limpia, filtrado avanzado, sistema de archivos y documentación Swagger.
 
 ## 📦 Requisitos Previos
 
-- **.NET 8.0+** - [Descargar](https://dotnet.microsoft.com/download)
+Antes de comenzar, asegúrate de tener instalado:
 
-- **Git** - Control de versionesAsegúrate de tener instalado:
+- **.NET 8 SDK** - [Descargar aquí](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+- **Node.js 18+** y **npm** - [Descargar aquí](https://nodejs.org/)
+- **Git** - [Descargar aquí](https://git-scm.com/downloads)
 
-- **MongoDB Atlas Account** - Base de datos cloud (gratis)
+> **Nota**: No necesitas instalar MongoDB ni crear una cuenta. El proyecto ya está configurado con MongoDB Atlas en la nube.
 
-- **Visual Studio Code o Visual Studio** - Editor- **.NET 8 SDK** ([Descargar](https://dotnet.microsoft.com/en-us/download/dotnet/8.0))
-
-- **MongoDB** (versión 4.4+) - [Descargar](https://www.mongodb.com/try/download/community)
-
----- **Git** (opcional, para clonar el repositorio)
-
-## ⚡ Configuración Rápida### Verificar Instalación
-
-### 1. Clonar el Repositorio```bash
-
-dotnet --version # Debe ser 8.0+
-
-````bashmongod --version  # Debe estar instalado
-
-git clone https://github.com/millionfrontenddevtest/frontenddevtest.git```
-
-cd frontenddevtest
-
-```## 🔧 Instalación
-
-
-
-### 2. Configurar MongoDB Atlas### 1. Clonar o Descargar el Proyecto
-
-
-
-1. Ve a https://cloud.mongodb.com```bash
-
-2. Crea una cuenta (gratis)# Usando Git (si lo tienes clonado)
-
-3. Crea un clustergit clone <url-del-repositorio>
-
-4. En Database → Browse Collections, crea:cd realState/backend
-
-   - Database: `RealStateDB_Dev`
-
-   - Collection: `Properties`# O navega manualmente a la carpeta del proyecto
-
-cd "c:\Users\<usuario>\OneDrive\Desktop\realState\backend"
-
-5. Copia tu connection string (formato: `mongodb+srv://user:password@cluster.mongodb.net/...`)```
-
-
-
-### 3. Configurar Credentials en el API### 2. Restaurar Dependencias
-
-
-
-Edita `backend/appsettings.Development.json`:```bash
-
-dotnet restore
-
-```json```
-
-{
-
-  "MongoDbSettings": {### 3. Compilar el Proyecto
-
-    "ConnectionString": "mongodb+srv://your-username:your-password@your-cluster.mongodb.net/?retryWrites=true&w=majority",
-
-    "DatabaseName": "RealStateDB_Dev",```bash
-
-    "PropertiesCollectionName": "Properties"dotnet build
-
-  }```
-
-}
-
-```### 4. Ejecutar Pruebas Unitarias
-
-
-
-### 4. Ejecutar el API```bash
-
-dotnet test
-
-```bash```
-
-cd backend
-
-dotnet restore### 5. Iniciar MongoDB
-
-dotnet build
-
-dotnet run**En Windows (si está instalado como servicio):**
-
-````
+### Verificar Instalación
 
 ```bash
+dotnet --version  # Debe mostrar 8.0 o superior
+node --version    # Debe mostrar v18 o superior
+npm --version
+```
 
-**Verifica que aparezca:**mongod  # O usa el shell de mongo si está instalado
+## 🚀 Instalación desde GitHub
+
+### 1. Clonar el Repositorio
+
+```bash
+git clone https://github.com/millionfrontenddevtest/frontenddevtest.git
+cd frontenddevtest
+```
+
+### 2. Configuración de MongoDB Atlas
+
+✅ **La base de datos ya está configurada y lista para usar**. El proyecto incluye una conexión preconfigurada a MongoDB Atlas, por lo que no necesitas crear ninguna cuenta ni realizar configuraciones adicionales.
+
+La configuración se encuentra en `backend/appsettings.Development.json` y ya está lista para funcionar.
+
+### 3. Instalar y Ejecutar el Backend
+
+```bash
+cd backend
+dotnet restore
+dotnet build
+dotnet run
+```
+
+El backend estará disponible en: `http://localhost:5298`
+
+Accede a la documentación Swagger: `http://localhost:5298/swagger`
+
+### 4. Instalar y Ejecutar el Frontend
+
+En otra terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+El frontend estará disponible en: `http://localhost:5173`
+
+### 5. (Opcional) Insertar Datos de Prueba
+
+Si la base de datos está vacía, puedes insertar propiedades de prueba usando el script proporcionado:
+
+```bash
+cd backend
+powershell -ExecutionPolicy Bypass -File insert-properties.ps1
+```
+
+## 🧪 Ejecutar Pruebas
+
+### Backend (.NET)
+
+`````bash
+cd backend
+dotnet test
+```
+
+### Frontend (React + Jest)
+
+```bash
+cd frontend
+npm test
+```
+
+## 📚 Documentación API
+
+Una vez que el backend esté ejecutándose, puedes acceder a la documentación interactiva de Swagger en:
+
+```
+http://localhost:5298/swagger
+```
+
+Desde ahí podrás:
+- Ver todos los endpoints disponibles
+- Probar las peticiones directamente
+- Ver los modelos de datos y respuestas
+
+### 📸 Formato de Imágenes
+
+**Importante**: Las imágenes de las propiedades se almacenan en formato **Base64** en la base de datos, no como URLs o rutas de archivo.
+
+Cuando crees o actualices una propiedad, el campo `image` debe contener una cadena base64:
+
+```json
+{
+  "idOwner": "507f1f77bcf86cd799439010",
+  "name": "Casa Moderna",
+  "address": "Calle Principal 123",
+  "price": 350000,
+  "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCE..."
+}
+```
+
+El formato debe ser: `data:image/[tipo];base64,[datos-base64]` donde `[tipo]` puede ser `jpeg`, `png`, `gif`, etc.
+
+## 🏗️ Estructura del Proyecto
+
+```
+realState/
+├── backend/                        # API REST .NET 8
+│   ├── Controllers/                # Endpoints REST
+│   ├── Services/                   # Lógica de negocio
+│   ├── Repositories/               # Acceso a datos MongoDB
+│   ├── Models/                     # Entidades de dominio
+│   ├── DTOs/                       # Data Transfer Objects
+│   ├── Configuration/              # Configuración
+│   ├── Middleware/                 # Middleware personalizado
+│   ├── Tests/                      # Pruebas unitarias
+│   └── appsettings.json           # Configuración de la aplicación
+│
+└── frontend/                       # Aplicación React + TypeScript
+    ├── src/
+    │   ├── components/             # Componentes React
+    │   ├── services/               # Servicios API
+    │   ├── hooks/                  # Custom Hooks
+    │   ├── types/                  # Tipos TypeScript
+    │   └── utils/                  # Utilidades
+    └── package.json
 
 ```
 
-Now listening on: http://localhost:5298
+## 🛠️ Tecnologías Utilizadas
 
-````**En Docker (alternativa):**
+### Backend
+- .NET 8
+- ASP.NET Core Web API
+- MongoDB Driver
+- Swagger/OpenAPI
+- NUnit + Moq (Testing)
 
+### Frontend
+- React 18
+- TypeScript
+- Vite
+- TailwindCSS
+- Jest (Testing)
 
+## 📝 Scripts Útiles
 
-### 5. Acceder a Swagger```bash
-
-docker run -d -p 27017:27017 --name mongodb mongo:latest
-
-Abre en el navegador:```
-
-````
-
-http://localhost:5298/swagger/index.html### 6. Ejecutar la Aplicación
-
-````
+### Backend
 
 ```bash
+dotnet run                  # Ejecutar en modo desarrollo
+dotnet build               # Compilar el proyecto
+dotnet test                # Ejecutar pruebas
+dotnet watch run           # Ejecutar con hot-reload
+```
 
----dotnet run
+### Frontend
 
-````
+```bash
+npm run dev                # Servidor de desarrollo
+npm run build              # Compilar para producción
+npm run test               # Ejecutar pruebas
+npm run lint               # Verificar código
+```
 
-## 🔌 API Endpoints
+## 🔧 Solución de Problemas
 
-La API estará disponible en: `https://localhost:5001` o `http://localhost:5000`
+### El backend no se conecta a MongoDB Atlas
 
-### GET - Obtener Todas las Propiedades
+1. **Verifica tu connection string**: Asegúrate de que el usuario, contraseña y nombre del cluster sean correctos en `appsettings.Development.json`
+2. **Verifica el acceso de red**: En MongoDB Atlas → Network Access, verifica que tu IP esté en la lista blanca
+3. **Verifica las credenciales**: En MongoDB Atlas → Database Access, asegúrate de que el usuario tenga permisos de lectura/escritura
+4. **Revisa el nombre de la base de datos**: Debe ser exactamente `RealStateDB` con la colección `Properties`
 
-````## ⚙️ Configuración
+### Error de puertos ocupados
 
-GET /api/Properties
+Si los puertos están en uso, puedes cambiarlos:
 
-```### appsettings.json
+**Backend**: Edita `backend/Properties/launchSettings.json`
+**Frontend**: Edita `frontend/vite.config.ts`
 
+### Dependencias no instaladas
 
+```bash
+# Backend
+cd backend
+dotnet restore
 
-**Respuesta:**El archivo `appsettings.json` contiene la configuración de MongoDB:
+# Frontend
+cd frontend
+rm -rf node_modules package-lock.json
+npm install
+```
 
-```json
-
-{```json
-
-  "success": true,{
-
-  "message": "Propiedades obtenidas exitosamente",  "Logging": {
-
-  "data": [    "LogLevel": {
-
-    {      "Default": "Information",
-
-      "id": "6708f12b3f1a9e4c8b2d5c01",      "Microsoft.AspNetCore": "Warning"
-
-      "idOwner": "507f1f77bcf86cd799439010",    }
-
-      "name": "Casa Moderna en Miami",  },
-
-      "address": "Ocean Drive 123, Miami, Florida",  "AllowedHosts": "*",
-
-      "price": 385000,  "MongoDbSettings": {
-
-      "image": "https://via.placeholder.com/400x300"    "ConnectionString": "mongodb://localhost:27017",
-
-    }    "DatabaseName": "RealStateDB",
-
-  ]    "PropertiesCollectionName": "Properties"
-
-}  }
-
-```}
-
-````
 
 ### GET - Obtener por ID
 
@@ -258,7 +242,7 @@ Content-Type: application/json$env:MongoDbSettings__DatabaseName = "RealStateDB"
 
 }
 
-````
+`````
 
 backend/
 
