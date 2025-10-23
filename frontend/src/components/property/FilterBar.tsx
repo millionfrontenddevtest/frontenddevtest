@@ -62,19 +62,26 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   };
 
   return (
-    <div className="bg-white p-8 shadow-subtle mb-8 border border-gray-100">
-      <div className="flex items-center justify-between mb-6">
+    <div className="relative bg-white/90 backdrop-blur-md p-8 shadow-elevation-2 mb-10 border border-luxury-gold/20 rounded-xl overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-gradient-to-br from-luxury-mist via-transparent to-luxury-champagne/20 pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-64 h-64 bg-luxury-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div className="relative flex items-center justify-between mb-8">
         <div>
-          <h2 className="text-2xl font-serif font-semibold text-luxury-charcoal mb-1">
+          <h2 className="text-3xl font-serif font-bold bg-gradient-to-r from-luxury-taupe via-luxury-darkGold to-luxury-gold bg-clip-text text-transparent mb-2">
             Refine Your Search
           </h2>
-          <p className="text-xs text-gray-400 tracking-wide uppercase">
-            Filter by your preferences
-          </p>
+          <div className="flex items-center gap-2">
+            <span className="inline-block w-8 h-px bg-gradient-to-r from-luxury-gold to-transparent"></span>
+            <p className="text-xs text-gray-500 tracking-wider uppercase font-medium">
+              Filter by your preferences
+            </p>
+          </div>
         </div>
-        <div className="w-10 h-10 bg-luxury-champagne flex items-center justify-center">
+        <div className="w-12 h-12 bg-gradient-to-br from-luxury-gold to-luxury-darkGold rounded-lg flex items-center justify-center shadow-luxury">
           <svg
-            className="w-5 h-5 text-luxury-gold"
+            className="w-6 h-6 text-white"
             fill="none"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -127,7 +134,8 @@ export const FilterBar: React.FC<FilterBarProps> = ({
         </div>
 
         {/* Action Buttons */}
-        <div className="flex gap-4 pt-4 border-t border-gray-100">
+        <div className="relative flex gap-4 pt-6">
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-luxury-gold/30 to-transparent"></div>
           <Button type="submit" variant="primary" className="flex-1">
             Apply Filters
           </Button>

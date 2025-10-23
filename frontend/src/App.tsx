@@ -9,19 +9,21 @@ function App() {
 
   return (
     <ErrorBoundary>
-      <div className="min-h-screen bg-luxury-pearl">
+      <div className="min-h-screen">
         {/* Header */}
-        <header className="bg-white border-b border-luxury-champagne">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <header className="relative bg-white/80 backdrop-blur-xl border-b border-luxury-gold/20 shadow-elevation-2 sticky top-0 z-50">
+          <div className="absolute inset-0 bg-gradient-to-r from-luxury-mist via-white to-luxury-champagne/30 opacity-50"></div>
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-luxury-gold to-luxury-darkGold rounded-sm flex items-center justify-center">
+              <div className="flex items-center space-x-5">
+                <div className="relative w-14 h-14 bg-gradient-to-br from-luxury-gold via-luxury-darkGold to-luxury-gold rounded-lg shadow-luxury flex items-center justify-center animate-float">
+                  <div className="absolute inset-0 bg-gradient-to-br from-luxury-gold to-luxury-darkGold rounded-lg opacity-50 blur-md"></div>
                   <svg
-                    className="w-7 h-7 text-white"
+                    className="relative w-8 h-8 text-white drop-shadow-lg"
                     fill="none"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth="1.5"
+                    strokeWidth="2"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                   >
@@ -29,18 +31,23 @@ function App() {
                   </svg>
                 </div>
                 <div>
-                  <h1 className="text-4xl font-serif font-semibold text-luxury-charcoal tracking-tight">
-                    PRESTIGE ESTATES
+                  <h1 className="text-3xl sm:text-4xl font-serif font-bold text-luxury-darkGold tracking-tight">
+                    MILLION
                   </h1>
-                  <p className="text-sm text-gray-500 mt-1 tracking-wide uppercase font-light">
+                  <p className="text-xs sm:text-sm text-gray-500 mt-1 tracking-wider uppercase font-medium flex items-center gap-2">
+                    <span className="inline-block w-8 h-px bg-gradient-to-r from-luxury-gold to-transparent"></span>
                     Curated Luxury Properties
+                    <span className="inline-block w-8 h-px bg-gradient-to-l from-luxury-gold to-transparent"></span>
                   </p>
                 </div>
               </div>
               <div className="hidden sm:block">
-                <div className="px-5 py-2 bg-luxury-champagne text-luxury-charcoal text-sm font-medium tracking-wide">
-                  {properties.length}{" "}
-                  {properties.length === 1 ? "PROPERTY" : "PROPERTIES"}
+                <div className="relative px-6 py-3 bg-gradient-to-br from-luxury-darkGold to-luxury-gold text-white text-sm font-semibold tracking-wider shadow-elevation-2 rounded-lg overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-r from-luxury-gold/0 via-white/20 to-luxury-gold/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <span className="relative">
+                    {properties.length}{" "}
+                    {properties.length === 1 ? "PROPERTY" : "PROPERTIES"}
+                  </span>
                 </div>
               </div>
             </div>
@@ -62,10 +69,22 @@ function App() {
         </main>
 
         {/* Footer */}
-        <footer className="bg-white border-t border-luxury-champagne mt-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <p className="text-center text-gray-400 text-xs tracking-wide uppercase font-light">
-              © 2025 Prestige Estates · Crafted with Excellence
+        <footer className="relative bg-gradient-to-b from-white/50 to-luxury-champagne/30 backdrop-blur-md border-t border-luxury-gold/20 mt-20">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-luxury-gold/5 to-transparent"></div>
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <span className="inline-block w-12 h-px bg-gradient-to-r from-transparent via-luxury-gold to-transparent"></span>
+              <svg
+                className="w-5 h-5 text-luxury-gold"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" />
+              </svg>
+              <span className="inline-block w-12 h-px bg-gradient-to-l from-transparent via-luxury-gold to-transparent"></span>
+            </div>
+            <p className="text-center text-gray-500 text-xs tracking-wider uppercase font-medium">
+              © 2025 Jose Benhur Florez Garcia
             </p>
           </div>
         </footer>

@@ -7,23 +7,100 @@
 
 /* Smooth transitions for all interactive elements */
 * {
-  transition-property: color, background-color, border-color, transform, opacity;
+  transition-property: color, background-color, border-color, transform, opacity,
+    box-shadow;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Custom scrollbar for webkit browsers */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f8f8f6;
+  background: linear-gradient(180deg, #f8f8f6 0%, #fafaf9 100%);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c9a961;
-  border-radius: 0;
+  background: linear-gradient(180deg, #c9a961 0%, #a98e4f 100%);
+  border-radius: 6px;
+  border: 2px solid #f8f8f6;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a98e4f;
+  background: linear-gradient(180deg, #a98e4f 0%, #8a7859 100%);
+}
+
+/* Shimmer effect animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Floating animation for luxury elements */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Pulse glow effect */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(201, 169, 97, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(201, 169, 97, 0.6);
+  }
+}
+
+/* Fade in from bottom */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scale in animation */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Apply animations to page elements */
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
 }

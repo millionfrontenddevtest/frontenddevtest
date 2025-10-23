@@ -17,21 +17,24 @@ export const Card: React.FC<CardProps> = ({
   hoverable = false,
 }) => {
   const hoverClasses = hoverable
-    ? "cursor-pointer transform hover:-translate-y-1 hover:shadow-luxury"
+    ? "cursor-pointer transform hover:-translate-y-2 hover:shadow-elevation-3"
     : "";
 
   return (
     <div
       className={`
-        bg-white shadow-subtle overflow-hidden
-        transition-all duration-300 ease-out
-        border border-gray-100
+        relative bg-white shadow-elevation-1 overflow-hidden
+        transition-all duration-500 ease-out
+        border border-luxury-gold/10 rounded-lg
+        backdrop-blur-sm
         ${hoverClasses}
         ${className}
       `}
       onClick={onClick}
     >
-      {children}
+      {/* Subtle shine effect */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-transparent to-luxury-gold/5 pointer-events-none"></div>
+      <div className="relative">{children}</div>
     </div>
   );
 };
