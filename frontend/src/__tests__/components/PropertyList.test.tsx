@@ -43,7 +43,7 @@ describe("PropertyList", () => {
       />
     );
 
-    expect(screen.getByText("Error Loading Properties")).toBeInTheDocument();
+    expect(screen.getByText("Unable to Load Properties")).toBeInTheDocument();
     expect(screen.getByText("Failed to load properties")).toBeInTheDocument();
   });
 
@@ -57,7 +57,7 @@ describe("PropertyList", () => {
       />
     );
 
-    expect(screen.getByText("No Properties Found")).toBeInTheDocument();
+    expect(screen.getByText("No Properties Available")).toBeInTheDocument();
   });
 
   it("renders property list correctly", () => {
